@@ -1,3 +1,30 @@
+<?php
+
+/** Register and Enqueue Scripts */
+add_action('wp_enqueue_scripts', 'custom_enqueue_scripts');
+function custom_enqueue_scripts() {
+	if ( is_home() ) {
+		wp_register_script('masonry', get_stylesheet_directory_uri() . '/js/masonry.js', '2.1.05', true);
+			wp_enqueue_script('masonry');
+
+		wp_register_script('masonry-args', get_stylesheet_directory_uri().'/js/masonry-args.js', true  );
+			wp_enqueue_script('masonry-args');
+
+		wp_register_script('jquery-infinitescroll', get_stylesheet_directory_uri().'/js/jquery.infinitescroll.min.js', array('jquery'), '2.0b2.120519', true);
+			wp_enqueue_script('jquery-infinitescroll');
+	}
+	wp_register_script('slidedown', get_stylesheet_directory_uri() . '/js/slidedown.js', 'jquery', '1', true);
+        wp_enqueue_script('slidedown');
+
+	wp_register_script( 'flexslider', get_stylesheet_directory_uri() . '/js/jquery.flexslider.min.js', array( 'jquery' ) );
+		wp_enqueue_script('flexslider');
+
+	wp_deregister_script('jquery');
+	wp_register_script('jquery', 'http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js', '1.7.2', true);
+	wp_enqueue_script('jquery');
+
+}
+
 /** Register widget areas */
 genesis_register_sidebar( array(
     'id'            => 'between-posts-box',
